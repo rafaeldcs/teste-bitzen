@@ -1,0 +1,61 @@
+﻿@model teste.Models.MotoristaModel
+@{
+    var listCategorias = new List<SelectListItem>
+        {              
+            new SelectListItem { Value = "A", Text = "A" },
+            new SelectListItem { Value = "B", Text = "B"},
+            new SelectListItem { Value = "C", Text = "C"},
+            new SelectListItem { Value = "D", Text = "D"},
+            new SelectListItem { Value = "E", Text = "E"}
+        };
+    var listStatus = new List<SelectListItem>
+        {              
+            new SelectListItem { Value = "true", Text = "Ativo" },
+            new SelectListItem { Value = "false", Text = "Desativado"},
+        };
+}
+
+<form asp-controller="Motorista" asp-action="Edit" method="post">
+    <input name="id" type="hidden" value="@Model.Id" />
+    <div class="form-group row">
+        <label for="Nome" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" name="Nome" class="form-control" id="Nome" placeholder="Nome" value="@Model.Nome">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="CPF" class="col-sm-2 col-form-label">CPF</label>
+        <div class="col-sm-10">
+            <input type="text" name="CPF" class="form-control" id="CPF" placeholder="CPF" maxlength="11" value="@Model.CPF">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="NumeroCNH" class="col-sm-2 col-form-label">NumeroCNH</label>
+        <div class="col-sm-10">
+            <input type="text" name="NumeroCNH" class="form-control" id="NumeroCNH" placeholder="NumeroCNH" maxlength="15" value="@Model.NumeroCNH">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="CategoriaCNH" class="col-sm-2 col-form-label">CategoriaCNH</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.CategoriaCNH, listCategorias, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="DataNascimento" class="col-sm-2 col-form-label">DataNascimento</label>
+        <div class="col-sm-10">
+            <input type="date" name="DataNascimento" class="form-control" id="DataNascimento" placeholder="DataNascimento" value="@Convert.ToDateTime(Model.DataNascimento).ToString("yyyy-MM-dd")">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">Status</div>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.Status, listStatus, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</form>

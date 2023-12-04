@@ -1,0 +1,79 @@
+﻿@model teste.Models.VeiculoModels
+<form asp-controller="Veiculo" asp-action="Details">
+    <div class="form-group">
+        <label for="Id">Id</label>
+        <input type="text" class="form-control" id="Id" name="Id" placeholder="Id" value="@Model.item.Id">
+    </div>
+    <div class="form-group">
+        <label for="Placa">Placa</label>
+        <input type="text" class="form-control" id="Placa" name="Placa" placeholder="Placa" value="@Model.item.Placa">
+    </div>
+    <div class="form-group">
+        <label for="CPF">NomeVeiculo</label>
+        <input type="text" class="form-control" id="NomeVeiculo" name="NomeVeiculo" placeholder="NomeVeiculo" value="@Model.item.NomeVeiculo">
+    </div>
+    <div class="form-group">
+        <label for="TipoCombustivel">TipoCombustivel</label>
+        <input type="text" class="form-control" id="TipoCombustivel" name="TipoCombustivel" placeholder="TipoCombustivel" value="@Model.item.TipoCombustivel">
+    </div>
+    <div class="form-group">
+        <label for="Fabricante">Fabricante</label>
+        <input type="text" class="form-control" id="Fabricante" name="Fabricante" placeholder="Fabricante" value="@Model.item.Fabricante">
+    </div>
+    <div class="form-group">
+        <label for="AnoFabricacao">AnoFabricacao</label>
+        <input type="text" class="form-control" id="AnoFabricacao" name="AnoFabricacao" placeholder="AnoFabricacao" value="@Model.item.AnoFabricacao">
+    </div>
+    <div class="form-group">
+        <label for="CapacidadeTanque">CapacidadeTanque</label>
+        <input type="text" class="form-control" id="CapacidadeTanque" name="CapacidadeTanque" placeholder="CapacidadeTanque" value="@Model.item.CapacidadeTanque">
+    </div>
+    <div class="form-group">
+        <label for="Observacoes">Observacoes</label>
+        <input type="text" class="form-control" id="Observacoes" name="Observacoes" placeholder="Observacoes" value="@Model.item.Observacoes">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-info" href="@Url.Action("Create")">Novo</a>
+</form>
+
+
+<table class="table" id="datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Placa</th>
+            <th>Nome Veiculo</th>
+            <th>Tipo Combustivel</th>
+            <th>Fabricante</th>
+            <th>Ano Fabricacao</th>
+            <th>Capacidade Tanque</th>
+            <th>Observacoes</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model.list)
+        {
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.Placa</td>
+                <td>@item.NomeVeiculo</td>
+                <td>@item.TipoCombustivel</td>
+                <td>@item.Fabricante</td>
+                <td>@item.AnoFabricacao</td>
+                <td>@item.CapacidadeTanque</td>
+                <td>@item.Observacoes</td>
+                <td>
+                    <a title="Editar" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                </td>
+                <td>
+                    <a title="Excluir" href="@Url.Action("Delete", new { id = item.Id })">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

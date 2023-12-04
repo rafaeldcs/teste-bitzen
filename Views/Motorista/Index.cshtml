@@ -1,0 +1,84 @@
+﻿@model teste.Models.MotoristaModels
+<form asp-controller="Motorista" asp-action="Details">
+    <div class="form-group">
+        <label for="Id">Id</label>
+        <input type="text" class="form-control" id="Id" name="Id" placeholder="Id" value="@Model.item.Id">
+    </div>
+    <div class="form-group">
+        <label for="Nome">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" value="@Model.item.Nome">
+    </div>
+    <div class="form-group">
+        <label for="CPF">CPF</label>
+        <input type="text" class="form-control" id="CPF" name="CPF" placeholder="CPF" value="@Model.item.CPF">
+    </div>
+    <div class="form-group">
+        <label for="NumeroCNH">NumeroCNH</label>
+        <input type="text" class="form-control" id="NumeroCNH" name="NumeroCNH" placeholder="NumeroCNH" value="@Model.item.NumeroCNH">
+    </div>
+    <div class="form-group">
+        <label for="CategoriaCNH">CategoriaCNH</label>
+        <input type="text" class="form-control" id="CategoriaCNH" name="CategoriaCNH" placeholder="CategoriaCNH" value="@Model.item.CategoriaCNH">
+    </div>
+    <div class="form-group">
+        <label for="DataNascimento">DataNascimento</label>
+        <input type="date" class="form-control" id="DataNascimento" name="DataNascimento" placeholder="DataNascimento" value="@Model.item.DataNascimento">
+    </div>
+    <div class="form-group ">
+        <div class="col-sm-2">Status</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="Status" id="Status" @((bool)(Model.item.Status != null) ? "checked" : "")>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-info" href="@Url.Action("Create")">Novo Abastecimento</a>
+</form>
+
+
+<table class="table" id="datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>NumeroCNH</th>
+            <th>CategoriaCNH</th>
+            <th>DataNascimento</th>
+            <th>Status</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model.list)
+        {
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.Nome</td>
+                <td>@item.CPF</td>
+                <td>@item.NumeroCNH</td>
+                <td>@item.CategoriaCNH</td>
+
+                <td>
+                @if (item.DataNascimento != null)
+                {
+                    var data = Convert.ToDateTime(item.DataNascimento).ToString("dd/MM/yyyy");
+                    @data;
+                }
+                </td>
+                <td>@(item.Status == true ? "Ativado" : "Desativado")</td>
+                <td>
+                    <a title="Editar" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                </td>
+                <td>
+                    <a title="Excluir" href="@Url.Action("Delete", new { id = item.Id })">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model teste.Models.AbastecimentoModels
+@{
+    var listVeiculos = Model.listVeiculo.Select(x => new SelectListItem()
+    {
+        Text = x.NomeVeiculo,
+        Value = x.Id.ToString()
+    });
+
+    var listMotorista = Model.listMotorista.Select(x => new SelectListItem()
+    {
+        Text = x.Nome,
+        Value = x.Id.ToString()
+    });
+}
+
+<form asp-controller="Abastecimento" asp-action="Create" method="post">
+    <div class="form-group row">
+        <label for="VeiculoId" class="col-sm-2 col-form-label">Veiculo</label>
+        <div class="col-sm-10">
+            <select name="VeiculoId" asp-items="@listVeiculos" class="form-control"></select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="CategoriaCNH" class="col-sm-2 col-form-label">Motorista</label>
+        <div class="col-sm-10">
+            <select name="MotoristaId" asp-items="@listMotorista" class="form-control"></select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Data" class="col-sm-2 col-form-label">Data</label>
+        <div class="col-sm-10">
+            <input type="date" name="Data" class="form-control" id="Data" placeholder="Data">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="TipoCombustivel" class="col-sm-2 col-form-label">TipoCombustivel</label>
+        <div class="col-sm-10">
+            <input type="text" name="TipoCombustivel" class="form-control" id="TipoCombustivel" placeholder="TipoCombustivel">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="QuantidadeAbastecida" class="col-sm-2 col-form-label">Quantidade Abastecida</label>
+        <div class="col-sm-10">
+            <input type="text" name="QuantidadeAbastecida" class="form-control" id="QuantidadeAbastecida" placeholder="QuantidadeAbastecida">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-info" href="@Url.Action("Index")">Relatório Abastecimento</a>
+        </div>        
+    </div>
+</form>
