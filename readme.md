@@ -19,7 +19,6 @@
 4. Rode o sistema
 5. Logue com usuário e senha: teste/teste
 6. Na tela Inicial teremos as seguintes pesquisas por: Cadastro/Visualização/Exclusao/Edição de: Motorista, veiculo e abastecimento
-7. Será trago todos as licitações cadastradas
 
 Links para download:
 
